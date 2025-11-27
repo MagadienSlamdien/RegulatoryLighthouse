@@ -1,0 +1,394 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-dark: #0A2540;
+    --primary-medium: #1A365D;
+    --primary-light: #2D3748;
+    --accent: #4299E1;
+    --text-light: #F7FAFC;
+    --text-muted: #CBD5E0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--text-light);
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
+    min-height: 100vh;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 1rem 2.25rem; /* tighter outer padding */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* allow left-aligned content */
+}
+
+/* Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.75rem; /* reduce vertical space under header */
+    text-align: left;
+}
+
+/* Make main stretch so footer sits at the bottom */
+main{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.logo h1,
+.logo .site-logo {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent) 0%, #63B3ED 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Make the header link look like a brand element, not a default blue link */
+.logo .site-logo{
+    text-decoration: none;
+    color: inherit; /* rely on background-clip text gradient */
+    display: inline-block;
+}
+
+/* Subtle hover to indicate interactivity without looking like a typical link */
+.logo .site-logo:hover{
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero {
+    flex: 1;
+    display: grid;
+    gap: 1rem; /* tighter vertical rhythm */
+    grid-template-columns: 1fr;
+    align-items: start; /* align items to top */
+    text-align: left;
+    width: 100%;
+    max-width: none; /* let columns resize freely */
+}
+
+/* Ensure rows size to their content so columns begin on the same baseline */
+.hero{
+    grid-auto-rows: min-content;
+}
+
+/* Left and right columns inside the hero */
+.hero-left {
+    padding-right: 1rem;
+    align-self: start; /* ensure left column starts at top */
+    padding-top: 0;
+}
+
+.hero-left, .hero-right {
+    margin-top: 0;
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.hero-right{
+    display:flex;
+    align-items:flex-start; /* pin CTA to top */
+    justify-content:center;
+    flex-direction:column;
+    gap: 0.75rem;
+    position: relative;
+    padding: 0.5rem 1rem;
+}
+
+.cta-card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 0.85rem 1rem; /* slightly smaller padding */
+    border-radius: 12px;
+    max-width: none; /* allow card to use full column width */
+    width: 100%;
+    box-shadow: 0 8px 22px rgba(2,6,23,0.22);
+    margin-top: 0; /* remove extra spacing above card */
+}
+.hero-right::before{
+    /* subtle decorative glow that doesn't disturb layout */
+    content: "";
+    position: absolute;
+    width: 320px;
+    height: 220px;
+    right: 24px;
+    top: 12px;
+    background: radial-gradient(circle at 30% 20%, rgba(66,153,225,0.12), transparent 40%), radial-gradient(circle at 70% 70%, rgba(99,179,237,0.06), transparent 50%);
+    border-radius: 18px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cta-card{
+    position: relative; /* sit above the decorative pseudo-element */
+    z-index: 1;
+}
+
+.cta-card .trust-section{
+    margin: 0 0 0.75rem 0;
+    padding: 0.75rem 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.cta-card .benefits-list li{
+    margin-bottom: 0.75rem;
+}
+
+.hero-title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    margin: 0 0 1.25rem 0;
+    line-height: 1.02;
+    grid-column: 1 / -1; /* span both columns */
+    max-width: 100%;
+}
+
+.hero-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    max-width: 60ch;
+}
+
+.hero-lead{
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    max-width: 62ch;
+}
+
+.hero-features{
+    list-style: none;
+    margin-top: 0.5rem;
+}
+
+.hero-features li{
+    margin-bottom: 0.6rem;
+    color: var(--text-muted);
+}
+
+/* Trust Section */
+.trust-section{
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 0.9rem;
+    margin-bottom: 1rem;
+    width: auto;
+    max-width: 640px;
+    box-shadow: 0 3px 12px rgba(2,6,23,0.18);
+}
+
+.trust-section h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+}
+
+.benefits-list {
+    list-style: none;
+    text-align: left;
+}
+
+.benefits-list li {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    padding-left: 0.5rem;
+}
+
+.benefits-list strong {
+    color: var(--accent);
+}
+
+/* Waitlist Form */
+.waitlist-form {
+    width: 100%;
+    max-width: 540px;
+}
+
+.input-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    flex-wrap: nowrap; /* prevent controls wrapping on wide layouts */
+}
+
+.input-group input {
+    flex: 1 1 auto;
+    min-width: 0; /* allow input to shrink in flex layout */
+    padding: 0.8rem 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-light);
+    font-size: 0.98rem;
+    transition: all 0.18s ease;
+}
+
+.input-group input::placeholder {
+    color: var(--text-muted);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.input-group button {
+    padding: 0.7rem 1rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    box-shadow: 0 6px 18px rgba(66,153,225,0.12);
+    white-space: nowrap; /* keep label on one line */
+    flex: 0 0 auto; /* don't let the button shrink or grow */
+}
+
+.input-group button:hover {
+    background: #3182CE;
+    transform: translateY(-2px);
+}
+
+.form-note {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Success Message */
+.success-message {
+    background: rgba(72, 187, 120, 0.1);
+    border: 1px solid rgba(72, 187, 120, 0.3);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.success-message h3 {
+    color: #48BB78;
+    margin-bottom: 1rem;
+}
+
+/* Accessibility helpers, focus styles, and disabled button states */
+.visually-hidden{
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}
+
+/* Focus outlines for keyboard users */
+a:focus, button:focus, input:focus{
+    outline: 3px solid rgba(66,153,225,0.18);
+    outline-offset: 2px;
+}
+
+/* Disabled / busy state for buttons */
+button:disabled, .input-group button:disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Hide success region when using the hidden attribute */
+.success-message[hidden]{
+    display: none;
+}
+
+/* Footer */
+footer {
+    text-align: left;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--text-muted);
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .logo .site-logo {
+        font-size: 1.75rem;
+    }
+
+    .hero-title {
+        font-size: 2.25rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.05rem;
+    }
+
+    .trust-section {
+        padding: 1rem;
+    }
+
+    .input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .benefits-list li {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .trust-section {
+        padding: 1rem;
+    }
+}
+
+/* Desktop: two-column hero */
+@media (min-width: 900px) {
+    .hero {
+        grid-template-columns: 1fr 1fr; /* left and right are equal halves */
+        gap: 2.5rem;
+    }
+
+    .hero-left {
+        align-self: start;
+    }
+
+    .hero-right svg{
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+    }
+}

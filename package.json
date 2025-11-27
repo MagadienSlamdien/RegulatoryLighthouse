@@ -1,0 +1,9 @@
+{
+  "name": "regulatory-lighthouse",
+  "version": "1.0.0",
+  "description": "Regulatory Lighthouse - AI-powered compliance intelligence",
+  "scripts": {
+    "build": "echo 'No build step needed for static site'"
+  },
+  "static": true
+}
